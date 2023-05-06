@@ -5,8 +5,8 @@
 #include <WiFiUdp.h>
 #include <WiFiClientSecure.h>
 
-const char* ssid = "Kraaijenet_Gast"; 
-const char* password = "KraaiGast"; 
+const char* ssid = "idname"; 
+const char* password = "pass"; 
 
 const char* mqttServer = "7b10c1a6effd49c798757d01597a1663.s2.eu.hivemq.cloud"; 
 const int mqttPort = 8883; 
