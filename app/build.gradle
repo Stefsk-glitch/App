@@ -33,6 +33,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2")
+    implementation("org.bouncycastle:bcprov-jdk15on:1.68")
+    implementation("org.bouncycastle:bcpkix-jdk15on:1.68")
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
