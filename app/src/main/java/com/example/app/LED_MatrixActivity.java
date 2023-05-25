@@ -33,14 +33,6 @@ public class LED_MatrixActivity extends AppCompatActivity {
             gridLayout.addView(button);
         }
 
-//        // Top Left Button
-//        Button topLeftButton = new Button(this);
-//        topLeftButton.setText("Top Left");
-//        GridLayout.LayoutParams topLeftParams = new GridLayout.LayoutParams();
-//        topLeftParams.setGravity(Gravity.START);
-//        topLeftButton.setLayoutParams(topLeftParams);
-//        gridLayout.addView(topLeftButton);
-
         // Bottom Button
         Button bottomButton = findViewById(R.id.bottom_button);
         bottomButton.setText("Bottom");
