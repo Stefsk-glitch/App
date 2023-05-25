@@ -22,4 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
+
+    public void openLedMatrixActivity(View v) {
+        Intent intent = new Intent(this, LED_MatrixActivity.class);
+        startActivity(intent);
+    }
 }
