@@ -43,23 +43,23 @@ void loop() {
   // paint one LED per row. The HT16K33 internal memory looks like
   // a 8x16 bit matrix (8 rows, 16 columns)
   
-  // for (uint8_t i=0; i<8; i++) {
-  //   // draw a diagonal row of pixels
-  //   matrix.ditsplaybuffer[i] = _BV((couner+i) % 16) | _BV((counter+i+8) % 16)  ;
-  // }
+   for (uint8_t i=0; i<8; i++) {
+     // draw a diagonal row of pixels
+     matrix.displaybuffer[i] = _BV((counter+i) % 16) | _BV((counter+i+8) % 16)  ;
+   }
 
   // Clear the display buffer
   matrix.clear();
 
   // HORIZONTAL
 
-  // matrix.displaybuffer [7] will light up the most right LED 
-  // matrix.displaybuffer [0] will light up the most left LED 
-  // matrix.displaybuffer [1] will light up the LED next to the most left LED 
-  // etc . . .
-  //matrix.displaybuffer[7] = 0b00000001;
-  //matrix.displaybuffer[0] = 0b00000001;
-  //matrix.displaybuffer[1] = 0b00000001;
+//   matrix.displaybuffer [7] will light up the most right LED 
+//   matrix.displaybuffer [0] will light up the most left LED 
+//   matrix.displaybuffer [1] will light up the LED next to the most left LED 
+//   etc . . .
+//  matrix.displaybuffer[7] = 0b00000001;
+//  matrix.displaybuffer[0] = 0b00000001;
+//  matrix.displaybuffer[1] = 0b00000001;
 
   // VERTICAL
   
