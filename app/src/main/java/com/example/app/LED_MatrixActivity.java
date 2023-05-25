@@ -1,3 +1,4 @@
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 public class LED_MatrixActivity extends AppCompatActivity {
-
     private static final int GRID_SIZE = 8;
 
     @Override
@@ -18,14 +18,6 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
         GridLayout gridLayout = findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
-
-        // Top Left Button
-        Button topLeftButton = new Button(this);
-        topLeftButton.setText("Top Left");
-        GridLayout.LayoutParams topLeftParams = new GridLayout.LayoutParams();
-        topLeftParams.setGravity(Gravity.START);
-        topLeftButton.setLayoutParams(topLeftParams);
-        gridLayout.addView(topLeftButton);
 
         // 64 buttons in the grid
         for (int i = 1; i <= GRID_SIZE * GRID_SIZE; i++) {
@@ -39,13 +31,18 @@ public class LED_MatrixActivity extends AppCompatActivity {
             layoutParams.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             button.setLayoutParams(layoutParams);
             gridLayout.addView(button);
-        }r
+        }
+
+        // Top Left Button
+        Button topLeftButton = new Button(this);
+        topLeftButton.setText("Top Left");
+        GridLayout.LayoutParams topLeftParams = new GridLayout.LayoutParams();
+        topLeftParams.setGravity(Gravity.START);
+        topLeftButton.setLayoutParams(topLeftParams);
+        gridLayout.addView(topLeftButton);
 
         // Bottom Button
         Button bottomButton = findViewById(R.id.bottom_button);
         bottomButton.setText("Bottom");
     }
-
-
-
 }
