@@ -1,12 +1,15 @@
 package com.example.app.builders;
 
 import android.util.Log;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MessageBuilder {
-    private StringBuilder message;
+    private List<Integer> numbers;
 
     public MessageBuilder() {
-        this.message = new StringBuilder();
+        this.numbers = new ArrayList<>();
     }
 
     private boolean isValidNumber(String number) {
@@ -20,13 +23,33 @@ public class MessageBuilder {
 
     public void add(String number) {
         if (isValidNumber(number)) {
-            message.append(number);
+            numbers.add(Integer.parseInt(number));
         } else {
             Log.d("MessageBuilder", "Invalid number: " + number);
         }
     }
 
+    public void remove(String number) {
+        int num = Integer.parseInt(number);
+        numbers.remove(Integer.valueOf(num));
+    }
+
     public void printMessage() {
-        Log.d("MessageBuilder", message.toString());
+        Collections.sort(numbers);
+        StringBuilder sb = new StringBuilder();
+        for (Integer number : numbers) {
+            sb.append(String.format("%02d", number));
+        }
+        Log.d("MessageBuilder", sb.toString());
+    }
+
+    public String getMessage(){
+        Collections.sort(numbers);
+        StringBuilder sb = new StringBuilder();
+        for (Integer number : numbers) {
+            sb.append(String.format("%02d", number));
+        }
+
+        return sb.toString();
     }
 }
