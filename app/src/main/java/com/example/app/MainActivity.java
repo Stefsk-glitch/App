@@ -7,6 +7,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.app.builders.MessageBuilder;
+
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mp;
 
