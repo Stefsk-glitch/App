@@ -23,7 +23,12 @@ public class MessageBuilder {
 
     public void add(String number) {
         if (isValidNumber(number)) {
-            numbers.add(Integer.parseInt(number));
+            int parsedNumber = Integer.parseInt(number);
+            if (numbers.contains(parsedNumber)) {
+                numbers.remove(Integer.valueOf(parsedNumber));
+            } else {
+                numbers.add(parsedNumber);
+            }
         } else {
             Log.d("MessageBuilder", "Invalid number: " + number);
         }
