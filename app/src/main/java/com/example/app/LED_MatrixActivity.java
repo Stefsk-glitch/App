@@ -8,8 +8,11 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import com.example.app.builders.MessageBuilder;
+
 public class LED_MatrixActivity extends AppCompatActivity {
     private static final int GRID_SIZE = 8;
+    private MessageBuilder messageBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
