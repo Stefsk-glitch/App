@@ -25,5 +25,3 @@ replay_pid*
 # ignore properties file
 #/test/text.txt
 local.properties
-
-.gradle
