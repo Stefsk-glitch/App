@@ -2,8 +2,8 @@
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +22,12 @@ public class LED_MatrixActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_led_matrix);
+
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> onBackButtonClick());
+
+        Button sendButton = findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(v -> onSendbuttonClick());
 
         GridLayout gridLayout = findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
@@ -45,15 +51,8 @@ public class LED_MatrixActivity extends AppCompatActivity {
             gridLayout.addView(button);
             button.setOnClickListener(v -> onButtonClick(button));
         }
-
-        // Bottom Button
-        Button bottomButton = findViewById(R.id.bottom_button);
-        bottomButton.setText("Bottom");
     }
 
-
-
-    private boolean isButtonRed = false;
     private void onButtonClick(Button button) {
         String buttonText = button.getText().toString();
         messageBuilder.add(buttonText);
@@ -78,4 +77,12 @@ public class LED_MatrixActivity extends AppCompatActivity {
         }
     }
 
+    private void onBackButtonClick() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void onSendbuttonClick() {
+        // do send string
+    }
 }

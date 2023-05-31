@@ -40,13 +40,13 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/bottom_button"
+        android:id="@+id/sendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Versturen" />
 
     <Button
-        android:id="@+id/top_left_button"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Terug" />
