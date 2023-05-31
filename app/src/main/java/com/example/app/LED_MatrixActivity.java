@@ -2,8 +2,8 @@
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -23,8 +23,16 @@ public class LED_MatrixActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_led_matrix);
 
+        Button backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> onBackButtonClick());
+
+        Button sendButton = findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(v -> onSendbuttonClick());
+
         GridLayout gridLayout = findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
+
+        int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
 
         // 64 buttons in the grid
         for (int i = 1; i <= GRID_SIZE * GRID_SIZE; i++) {
@@ -37,28 +45,42 @@ public class LED_MatrixActivity extends AppCompatActivity {
             layoutParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             layoutParams.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             button.setLayoutParams(layoutParams);
+            button.setBackgroundColor(defaultGrayColor); // Set initial background color
             gridLayout.addView(button);
             button.setOnClickListener(v -> onButtonClick(button));
         }
-
-        // Bottom Button
-        Button bottomButton = findViewById(R.id.bottom_button);
-        bottomButton.setText("Bottom");
     }
 
-    private boolean isButtonRed = false;
-    private void onButtonClick(Button button){
+    private void onButtonClick(Button button) {
         String buttonText = button.getText().toString();
         messageBuilder.add(buttonText);
         Log.d("BUTTON", buttonText);
         messageBuilder.printMessage();
 
-        if (isButtonRed) {
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray));
-            isButtonRed = false;
+        int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
+        int redColor = getResources().getColor(android.R.color.holo_red_light);
+
+        Drawable buttonBackground = button.getBackground();
+
+        if (buttonBackground instanceof ColorDrawable) {
+            int buttonColor = ((ColorDrawable) buttonBackground).getColor();
+
+            if (buttonColor == defaultGrayColor) {
+                button.setBackgroundColor(redColor);
+            } else if (buttonColor == redColor) {
+                button.setBackgroundColor(defaultGrayColor);
+            }
         } else {
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light));
-            isButtonRed = true;
+            button.setBackgroundColor(defaultGrayColor);
         }
+    }
+
+    private void onBackButtonClick() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void onSendbuttonClick() {
+        // do send string
     }
 }
