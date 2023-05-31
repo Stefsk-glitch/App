@@ -27,12 +27,14 @@ public class LED_MatrixActivity extends AppCompatActivity {
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
 
         int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
+        int margin = getResources().getDimensionPixelSize(R.dimen.button_margin);
 
         // 64 buttons in the grid
         for (int i = 1; i <= GRID_SIZE * GRID_SIZE; i++) {
             Button button = new Button(this);
             button.setText(String.valueOf(i));
             GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+            layoutParams.setMargins(margin, margin, margin, margin); // Set margins for spacing
             layoutParams.setGravity(Gravity.CENTER);
             layoutParams.width = 0;
             layoutParams.height = GridLayout.LayoutParams.WRAP_CONTENT;
@@ -48,6 +50,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
         Button bottomButton = findViewById(R.id.bottom_button);
         bottomButton.setText("Bottom");
     }
+
 
 
     private boolean isButtonRed = false;
