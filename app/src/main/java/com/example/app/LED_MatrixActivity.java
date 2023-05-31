@@ -26,6 +26,8 @@ public class LED_MatrixActivity extends AppCompatActivity {
         GridLayout gridLayout = findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
 
+        int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
+
         // 64 buttons in the grid
         for (int i = 1; i <= GRID_SIZE * GRID_SIZE; i++) {
             Button button = new Button(this);
@@ -37,6 +39,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
             layoutParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             layoutParams.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
             button.setLayoutParams(layoutParams);
+            button.setBackgroundColor(defaultGrayColor); // Set initial background color
             gridLayout.addView(button);
             button.setOnClickListener(v -> onButtonClick(button));
         }
@@ -46,19 +49,30 @@ public class LED_MatrixActivity extends AppCompatActivity {
         bottomButton.setText("Bottom");
     }
 
+
     private boolean isButtonRed = false;
-    private void onButtonClick(Button button){
+    private void onButtonClick(Button button) {
         String buttonText = button.getText().toString();
         messageBuilder.add(buttonText);
         Log.d("BUTTON", buttonText);
         messageBuilder.printMessage();
 
-        if (isButtonRed) {
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray));
-            isButtonRed = false;
+        int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
+        int redColor = getResources().getColor(android.R.color.holo_red_light);
+
+        Drawable buttonBackground = button.getBackground();
+
+        if (buttonBackground instanceof ColorDrawable) {
+            int buttonColor = ((ColorDrawable) buttonBackground).getColor();
+
+            if (buttonColor == defaultGrayColor) {
+                button.setBackgroundColor(redColor);
+            } else if (buttonColor == redColor) {
+                button.setBackgroundColor(defaultGrayColor);
+            }
         } else {
-            button.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light));
-            isButtonRed = true;
+            button.setBackgroundColor(defaultGrayColor);
         }
     }
+
 }
