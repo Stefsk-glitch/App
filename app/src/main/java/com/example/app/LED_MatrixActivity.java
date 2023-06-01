@@ -101,5 +101,6 @@ public class LED_MatrixActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_LONG);
             toast.show();
         }
+        mqtt.disconnect();
     }
 }
