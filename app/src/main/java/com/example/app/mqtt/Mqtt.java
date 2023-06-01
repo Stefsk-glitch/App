@@ -30,8 +30,7 @@ public class Mqtt {
                     url,
                     MqttClient.generateClientId(),
                     new MemoryPersistence());
-        }
-        catch (MqttException e) {
+        } catch (MqttException e) {
             throw new RuntimeException(e);
         }
 
@@ -40,31 +39,23 @@ public class Mqtt {
         mqttConnectOptions.setSocketFactory(SSLSocketFactory.getDefault());
     }
 
-    public void connect() throws MqttException
-    {
-//        try {
-            client.connect(mqttConnectOptions);
-//        }
-//        catch (MqttException e) {
-//            throw new RuntimeException(e);
-//        }
+    public void connect() throws MqttException {
+        client.connect(mqttConnectOptions);
     }
 
-    public void disconnect(){
+    public void disconnect() {
         try {
             client.disconnect();
-        }
-        catch (MqttException e) {
+        } catch (MqttException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void sendMessage(String message) throws MqttException
-    {
-            client.publish(
-                    topic,
-                    message.getBytes(UTF_8),
-                    2,
-                    false);
+    public void sendMessage(String message) throws MqttException {
+        client.publish(
+                topic,
+                message.getBytes(UTF_8),
+                2,
+                false);
     }
 }
