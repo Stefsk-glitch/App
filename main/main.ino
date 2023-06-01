@@ -26,8 +26,8 @@ long duration = 0;
 float distanceCm = 0;
 String localMessage = "";
 
-const char* ssid = "xxx";
-const char* password = "xxx";
+const char* ssid = "joost";
+const char* password = "patrick123";
 
 const char* mqttServer = "7b10c1a6effd49c798757d01597a1663.s2.eu.hivemq.cloud";
 const int mqttPort = 8883;
@@ -38,13 +38,14 @@ WiFiClientSecure wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 void setup() {
-  matrix.begin(0x75);  // pass in the address
+  matrix.begin(0x76);  // pass in the address
   Serial.begin(115200);
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Tryin' to connect. . .");
     delay(1000);
   }
   Serial.println("Connected");
@@ -87,44 +88,89 @@ void loop() {
 
   distanceCm = duration * SOUND_SPEED / 2;
 
-  // Check if the incoming message is not null
-  if (localMessage != "") {
-    // Check if the code is correct
-    // TODO: Make the pig head code and check it here instead of checking "lol"
-    if (localMessage == "lol") {
-      // TODO: Flash pig head 3 times after show balloon and let the balloon fly up until balloon is gone
-      Serial.println("CORRECT CODE!");
-    }
-    else {
-      // make whole led matrix RED and after clear
-      Serial.println("WRONG CODE!");
-    }
-
-    localMessage = "";
-  }
-
   if (distanceCm < 80) {
-    for (uint8_t i = 0; i < 8; i++) {
-      // draw a diagonal row of pixels
-      matrix.displaybuffer[i] = _BV((counter + i) % 16) | _BV((counter + i + 8) % 16)  ;
+    if (localMessage == "") {
+      digitalWrite(onboardLed, HIGH);
+
+      // paint one LED per row. The HT16K33 internal memory looks like
+      // a 8x16 bit matrix (8 rows, 16 columns)
+      for (uint8_t i=0; i<8; i++) {
+        // draw a diagonal row of pixels
+        matrix.displaybuffer[i] = _BV((counter+i) % 16) | _BV((counter+i+8) % 16)  ;
+      }
+      // write the changes we just made to the display
       matrix.writeDisplay();
       delay(100);
+
       counter++;
       if (counter >= 16) counter = 0;
     }
-    // write the changes we just made to the display
-  }
-    else {
-      // TODO: maak dat ogen open gaan op de led matrix
+
+    // Check if the incoming message is not null
+    if (localMessage != "") {
+      
+      // Clear the matrix LEDs
+      for (uint8_t i = 0; i < 8; i++) {
+        matrix.displaybuffer[i] = 0;
+      }
+      // write the changes we just made to the display
+      matrix.writeDisplay();
+      
       digitalWrite(onboardLed, LOW);
       delay(100);
-    }
 
-    Serial.print("Distance (cm): ");
-    Serial.println(distanceCm);
+      int numFlashes = 0;
 
-    delay(1000);
+      if (localMessage == "010203070809121314161824252730323340434445485052545659606164") {
+        // TODO: Flash pig head 3 times after show balloon and let the balloon fly up until balloon is gone
+        Serial.println("CORRECT CODE!");
+      }
+      else {
+        // make whole led matrix RED and after clear
+        Serial.println("WRONG CODE!");
+
+        // Flash the matrix three times
+        while (numFlashes < 3) {
+          // Turn off the matrix LEDs
+          for (uint8_t i = 0; i < 8; i++) {
+            matrix.displaybuffer[i] = 0;
+          }
+          // write the changes we just made to the display
+          matrix.writeDisplay();
+          delay(500);
+
+          // Fill the matrix
+          for (uint8_t i = 0; i < 8; i++) {
+            matrix.displaybuffer[i] = 0xFF;
+          }
+          // write the changes we just made to the display
+          matrix.writeDisplay();
+          delay(500);
+
+          numFlashes++;
+        }
+      }
+
+      localMessage = "";
+    } 
   }
+  else {
+    // Clear the matrix LEDs
+    for (uint8_t i = 0; i < 8; i++) {
+      matrix.displaybuffer[i] = 0;
+    }
+    // write the changes we just made to the display
+    matrix.writeDisplay();
+    
+    digitalWrite(onboardLed, LOW);
+    delay(100);
+  }
+
+  Serial.print("Distance (cm): ");
+  Serial.println(distanceCm);
+
+  //delay(1000);
+}
 
 
 void callback(char* topic, byte* payload, unsigned int length) {
