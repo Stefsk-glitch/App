@@ -26,14 +26,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_led_matrix);
 
-        try {
-            mqtt.connect();
-            Toast toast = Toast.makeText(this, "Verbinding gemaakt!", Toast.LENGTH_SHORT);
-            toast.show();
-        } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Verbinding gemaakt!", Toast.LENGTH_LONG);
-            toast.show();
-        }
+
 
 
         Button backButton = findViewById(R.id.backButton);
@@ -95,11 +88,17 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
     private void onSendbuttonClick() {
         try {
-            mqtt.sendMessage(messageBuilder.getMessage());
-            Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
-            toast.show();
+            mqtt.connect();
+            try {
+                mqtt.sendMessage(messageBuilder.getMessage());
+                Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
+                toast.show();
+            } catch (Exception e) {
+                Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_LONG);
+                toast.show();
+            }
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_LONG);
             toast.show();
         }
     }
