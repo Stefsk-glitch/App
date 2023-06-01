@@ -11,17 +11,30 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import com.example.app.builders.MessageBuilder;
+import com.example.app.mqtt.Mqtt;
 
 public class LED_MatrixActivity extends AppCompatActivity {
     private static final int GRID_SIZE = 8;
     private MessageBuilder messageBuilder = new MessageBuilder();
+    private Mqtt mqtt = new Mqtt();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_led_matrix);
+
+        try {
+            mqtt.connect();
+            Toast toast = Toast.makeText(this, "Verbinding gemaakt!", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(this, "Verbinding gemaakt!", Toast.LENGTH_LONG);
+            toast.show();
+        }
+
 
         Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> onBackButtonClick());
@@ -81,6 +94,13 @@ public class LED_MatrixActivity extends AppCompatActivity {
     }
 
     private void onSendbuttonClick() {
-        // do send string
+        try {
+            mqtt.sendMessage(messageBuilder.getMessage());
+            Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
+            toast.show();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 }
