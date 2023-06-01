@@ -40,13 +40,14 @@ public class Mqtt {
         mqttConnectOptions.setSocketFactory(SSLSocketFactory.getDefault());
     }
 
-    public void connect(){
-        try {
+    public void connect() throws MqttException
+    {
+//        try {
             client.connect(mqttConnectOptions);
-        }
-        catch (MqttException e) {
-            throw new RuntimeException(e);
-        }
+//        }
+//        catch (MqttException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void disconnect(){
@@ -58,17 +59,12 @@ public class Mqtt {
         }
     }
 
-    public boolean sendMessage(String message){
-        try {
+    public void sendMessage(String message) throws MqttException
+    {
             client.publish(
                     topic,
                     message.getBytes(UTF_8),
                     2,
                     false);
-            return true;
-        }
-        catch (MqttException e) {
-            return false;
-        }
     }
 }
