@@ -19,7 +19,6 @@ import com.example.app.mqtt.Mqtt;
 public class LED_MatrixActivity extends AppCompatActivity {
     private static final int GRID_SIZE = 8;
     private MessageBuilder messageBuilder = new MessageBuilder();
-    private Mqtt mqtt = new Mqtt();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +87,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
     private void onSendbuttonClick() {
         try {
+            Mqtt mqtt = new Mqtt();
             mqtt.connect();
             try {
                 mqtt.sendMessage(messageBuilder.getMessage());
