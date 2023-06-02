@@ -86,8 +86,8 @@ public class LED_MatrixActivity extends AppCompatActivity {
     }
 
     private void onSendbuttonClick() {
+        Mqtt mqtt = new Mqtt();
         try {
-            Mqtt mqtt = new Mqtt();
             mqtt.connect();
             try {
                 mqtt.sendMessage(messageBuilder.getMessage());
