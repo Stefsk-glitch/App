@@ -11,48 +11,46 @@
         android:id="@+id/mapButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
         android:background="@android:color/black"
         android:onClick="openMapActivity"
         android:text="Kaart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/writeButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:background="@android:color/black"
         android:onClick="openLedMatrixActivity"
         android:text="Tekenen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapButton" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="401dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="365dp"
+        android:layout_height="297dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/pig_main_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/pig_main_menu" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/characterButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="#000000"
         android:text="Karakters"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/writeButton" />
 

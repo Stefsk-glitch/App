@@ -17,28 +17,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:text="Tekenen"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Tekenen"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="center"
-            android:gravity="center"
-            android:text="Teken het plaatje dat op het beeld staat"
-            android:textSize="24sp" />
-
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="Teken het plaatje dat op het beeld staat"
+        android:textSize="24sp" />
 
     <GridLayout
         android:id="@+id/grid_layout"
