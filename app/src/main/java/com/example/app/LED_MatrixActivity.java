@@ -28,6 +28,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 import javax.net.ssl.SSLSocketFactory;
 
@@ -35,6 +36,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
     private static final int GRID_SIZE = 8;
     private MessageBuilder messageBuilder = new MessageBuilder();
     private Mqtt mqtt = new Mqtt();
+    private MqttClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +73,9 @@ public class LED_MatrixActivity extends AppCompatActivity {
         TextView queue = findViewById(R.id.textView3);
         TextView yourQueue = findViewById(R.id.textView4);
 
-        MqttClient client = null;
         try {
             // serverURI in format: "protocol://name:port"
-            client = new MqttClient(
+            this.client = new MqttClient(
                     "ssl://7b10c1a6effd49c798757d01597a1663.s2.eu.hivemq.cloud:8883",
                     MqttClient.generateClientId(),
                     new MemoryPersistence());
@@ -107,8 +108,12 @@ public class LED_MatrixActivity extends AppCompatActivity {
                     queue.setText("Jouw wachtnummer: " + message);
                 }
 
-                if (topic.equals("topic/currentQueue")){
+                if (topic.equals("topic/currentQueue"))  {
                     yourQueue.setText("Het wachtnummer: " + message);
+                }
+
+                if (!topic.equals("topic/currentQueue") && (!topic.equals("topic/queue"))) {
+                    Log.d("SUB", message.toString());
                 }
             }
 
@@ -161,7 +166,10 @@ public class LED_MatrixActivity extends AppCompatActivity {
         try {
             mqtt.connect();
             try {
-                mqtt.sendMessage(messageBuilder.getMessage());
+                UUID uniqueId = UUID.randomUUID();
+                Log.d("UID", uniqueId.toString());
+                sub("topic/" + uniqueId);
+                mqtt.sendMessage(messageBuilder.getMessage() + "@" + uniqueId);
                 Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
                 toast.show();
             } catch (Exception e) {
@@ -173,5 +181,10 @@ public class LED_MatrixActivity extends AppCompatActivity {
             toast.show();
         }
         mqtt.disconnect();
+    }
+
+    private void sub(String topic) throws MqttException {
+        this.client.subscribe(topic, 1);
+        Log.d("SUB", "Subbed to topic: " + topic);
     }
 }
