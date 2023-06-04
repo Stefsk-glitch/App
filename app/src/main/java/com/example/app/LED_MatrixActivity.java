@@ -71,7 +71,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
         }
 
         TextView queue = findViewById(R.id.textView3);
-        TextView yourQueue = findViewById(R.id.textView4);
+        TextView yourQueueNumber = findViewById(R.id.textView4);
 
         try {
             // serverURI in format: "protocol://name:port"
@@ -108,11 +108,8 @@ public class LED_MatrixActivity extends AppCompatActivity {
                     queue.setText("Jouw wachtnummer: " + message);
                 }
 
-                if (topic.equals("topic/currentQueue"))  {
-                    yourQueue.setText("Het wachtnummer: " + message);
-                }
-
-                if (!topic.equals("topic/currentQueue") && (!topic.equals("topic/queue"))) {
+                if (!topic.equals("topic/queue")) {
+                    yourQueueNumber.setText("Het wachtnummer: " + message);
                     Log.d("SUB", message.toString());
                 }
             }
