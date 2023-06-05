@@ -30,6 +30,7 @@
         android:background="@android:color/black"
         android:onClick="openLedMatrixActivity"
         android:text="Tekenen"
+        android:fontFamily="@font/CherryBomb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +53,7 @@
         android:layout_marginTop="28dp"
         android:background="#000000"
         android:text="Karakters"
+        android:fontFamily="@font/CherryBomb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/writeButton" />
