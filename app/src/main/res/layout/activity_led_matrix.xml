@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Tekenen"
-        android:fontFamily="@font/CherryBomb"
+        android:fontFamily="@font/cherrybomb"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Teken het plaatje dat op het beeld staat"
-        android:fontFamily="@font/CherryBomb"
+        android:fontFamily="@font/cherrybomb"
         android:textSize="24sp" />
 
     <GridLayout
@@ -49,14 +49,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Versturen"
-        android:fontFamily="@font/CherryBomb"   />
+        android:fontFamily="@font/cherrybomb"   />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Terug"
-        android:fontFamily="@font/CherryBomb"   />
+        android:fontFamily="@font/cherrybomb"   />
 
     <LinearLayout
         android:id="@+id/bottom_layout"
