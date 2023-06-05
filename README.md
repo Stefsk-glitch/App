@@ -1,2 +1,2 @@
 # App
-File > sync project with gradle files
+File > sync project with gradle files.
