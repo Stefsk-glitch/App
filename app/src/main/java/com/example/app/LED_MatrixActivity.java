@@ -70,9 +70,6 @@ public class LED_MatrixActivity extends AppCompatActivity {
             button.setOnClickListener(v -> onButtonClick(button));
         }
 
-        TextView queue = findViewById(R.id.textView3);
-        TextView yourQueueNumber = findViewById(R.id.textView4);
-
         try {
             // serverURI in format: "protocol://name:port"
             this.client = new MqttClient(
@@ -104,12 +101,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                if (topic.equals("topic/queue")){
-                    queue.setText("Jouw wachtnummer: " + message);
-                }
-
                 if (!topic.equals("topic/queue")) {
-                    yourQueueNumber.setText("Het wachtnummer: " + message);
                     Log.d("SUB", message.toString());
                 }
             }
@@ -120,14 +112,6 @@ public class LED_MatrixActivity extends AppCompatActivity {
                 System.out.println("delivery complete " + token);
             }
         });
-
-        try {
-            client.subscribe("topic/queue", 1);
-            client.subscribe("topic/currentQueue", 1);
-        }
-        catch (MqttException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private void onButtonClick(Button button) {
@@ -163,10 +147,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
         try {
             mqtt.connect();
             try {
-                UUID uniqueId = UUID.randomUUID();
-                Log.d("UID", uniqueId.toString());
-                sub("topic/" + uniqueId);
-                mqtt.sendMessage(messageBuilder.getMessage() + "@" + uniqueId);
+                mqtt.sendMessage(messageBuilder.getMessage());
                 Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
                 toast.show();
             } catch (Exception e) {
