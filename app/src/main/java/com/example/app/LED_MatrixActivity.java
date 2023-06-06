@@ -1,8 +1,6 @@
 
 package com.example.app;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app.builders.MessageBuilder;
@@ -26,9 +23,6 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-
-import java.util.Arrays;
-import java.util.UUID;
 
 import javax.net.ssl.SSLSocketFactory;
 
@@ -151,11 +145,11 @@ public class LED_MatrixActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
                 toast.show();
             } catch (Exception e) {
-                Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_SHORT);
                 toast.show();
             }
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_SHORT);
             toast.show();
         }
         mqtt.disconnect();
