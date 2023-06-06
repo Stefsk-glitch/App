@@ -151,11 +151,11 @@ public class LED_MatrixActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
                 toast.show();
             } catch (Exception e) {
-                Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_SHORT);
                 toast.show();
             }
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(this, "Verbinding mislukt!", Toast.LENGTH_SHORT);
             toast.show();
         }
         mqtt.disconnect();
