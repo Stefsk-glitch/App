@@ -54,6 +54,7 @@
         android:layout_marginBottom="32dp"
         android:background="#000000"
         android:fontFamily="@font/cherrybomb"
+        android:onClick="openCharactersActivity"
         android:text="De Karakters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LED_MatrixActivity.class);
         startActivity(intent);
     }
+
+    public void openCharactersActivity(View v) {
+        Intent intent = new Intent(this, CharactersActivity.class);
+        startActivity(intent);
+    }
 }
