@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +23,6 @@
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Teken het plaatje dat op het beeld staat"
-        android:fontFamily="@font/cherrybomb"
         android:textSize="24sp" />
 
     <GridLayout
@@ -39,14 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Versturen"
-        android:fontFamily="@font/cherrybomb"   />
+        />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Terug"
-        android:fontFamily="@font/cherrybomb"   />
+        />
 
     <LinearLayout
         android:id="@+id/bottom_layout"

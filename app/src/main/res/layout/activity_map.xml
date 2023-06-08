@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
         android:id="@+id/textView5"
@@ -39,7 +40,6 @@
         android:layout_marginBottom="16dp"
         android:onClick="openMainActivity"
         android:text="Terug"
-        android:fontFamily="@font/cherrybomb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
