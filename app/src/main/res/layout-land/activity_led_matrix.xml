@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
         android:id="@+id/textView3"
@@ -41,7 +42,6 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:text="Versturen"
-        android:fontFamily="@font/cherrybomb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -52,7 +52,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="Terug"
-        android:fontFamily="@font/cherrybomb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -79,7 +78,6 @@
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Teken het plaatje dat op het beeld staat"
-        android:fontFamily="@font/cherrybomb"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
