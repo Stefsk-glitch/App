@@ -13,7 +13,6 @@ public class MapActivity extends AppCompatActivity {
     private Button button;
     private boolean zoomed = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +36,5 @@ public class MapActivity extends AppCompatActivity {
             button.setText("Kleiner Maken");
             zoomed = true;
         }
-
     }
 }

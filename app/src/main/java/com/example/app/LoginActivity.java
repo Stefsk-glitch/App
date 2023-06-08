@@ -12,33 +12,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.builders.MessageBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class LoginActivity extends AppCompatActivity
-{
+public class LoginActivity extends AppCompatActivity {
     private MediaPlayer mp;
 
     private Button submitButton;
     private TextInputEditText textNameInput;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         submitButton = findViewById(R.id.submitButton);
         textNameInput = findViewById(R.id.textNameInput);
+
         mp = MediaPlayer.create(this, R.raw.androide);
         mp.start();
-
     }
 
-    public void onSubmitButton(View v)
-    {
-        if(String.valueOf(textNameInput.getText()).equals(""))
-        {
+    public void onSubmitButton(View v) {
+        if (String.valueOf(textNameInput.getText()).equals("")) {
             Toast toast = Toast.makeText(this, "Vergeet je naam niet in te vullen!", Toast.LENGTH_LONG);
             toast.show();
-        } else
-        {
+        } else {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();

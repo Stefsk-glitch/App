@@ -38,10 +38,10 @@ public class LED_MatrixActivity extends AppCompatActivity {
         setContentView(R.layout.activity_led_matrix);
 
         Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> onBackButtonClick());
+        backButton.setOnClickListener(v -> onBackButton());
 
         Button sendButton = findViewById(R.id.sendButton);
-        sendButton.setOnClickListener(v -> onSendbuttonClick());
+        sendButton.setOnClickListener(v -> onSendButton());
 
         GridLayout gridLayout = findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
@@ -70,8 +70,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
                     "ssl://7b10c1a6effd49c798757d01597a1663.s2.eu.hivemq.cloud:8883",
                     MqttClient.generateClientId(),
                     new MemoryPersistence());
-        }
-        catch (MqttException e) {
+        } catch (MqttException e) {
             throw new RuntimeException(e);
         }
 
@@ -79,10 +78,10 @@ public class LED_MatrixActivity extends AppCompatActivity {
         mqttConnectOptions.setUserName("AndroidPhone");
         mqttConnectOptions.setPassword("Stronk!PasswordSuperAdmin1".toCharArray());
         mqttConnectOptions.setSocketFactory(SSLSocketFactory.getDefault());
+
         try {
             client.connect(mqttConnectOptions);
-        }
-        catch (MqttException e) {
+        } catch (MqttException e) {
             throw new RuntimeException(e);
         }
 
@@ -132,12 +131,12 @@ public class LED_MatrixActivity extends AppCompatActivity {
         }
     }
 
-    private void onBackButtonClick() {
+    private void onBackButton() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    private void onSendbuttonClick() {
+    private void onSendButton() {
         try {
             mqtt.connect();
             try {

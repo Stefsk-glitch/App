@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:background="@android:color/black"
         android:fontFamily="@font/cherrybomb"
-        android:onClick="openMapActivity"
+        android:onClick="onMapButton"
         android:text="De Kaart"
         app:layout_constraintBottom_toTopOf="@+id/writeButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,9 +30,9 @@
         android:layout_weight="1"
         android:background="@android:color/black"
         android:fontFamily="@font/cherrybomb"
-        android:onClick="openLedMatrixActivity"
+        android:onClick="onWriteButton"
         android:text="Tekenen"
-        app:layout_constraintBottom_toTopOf="@+id/characterButton"
+        app:layout_constraintBottom_toTopOf="@+id/charactersButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,13 +48,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/characterButton"
+        android:id="@+id/charactersButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
         android:background="#000000"
         android:fontFamily="@font/cherrybomb"
-        android:onClick="openCharactersActivity"
+        android:onClick="onCharactersButton"
         android:text="De Karakters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
