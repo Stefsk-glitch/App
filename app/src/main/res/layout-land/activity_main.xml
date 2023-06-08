@@ -16,7 +16,7 @@
         android:layout_weight="1"
         android:background="@android:color/black"
         android:fontFamily="@font/cherrybomb"
-        android:onClick="openMapActivity"
+        android:onClick="onMapButton"
         android:text="Kaart"
         app:layout_constraintBottom_toTopOf="@+id/writeButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,9 +30,9 @@
         android:layout_weight="1"
         android:background="@android:color/black"
         android:fontFamily="@font/cherrybomb"
-        android:onClick="openLedMatrixActivity"
+        android:onClick="onWriteButton"
         android:text="Tekenen"
-        app:layout_constraintBottom_toTopOf="@+id/characterButton"
+        app:layout_constraintBottom_toTopOf="@+id/charactersButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/characterButton"
+        android:id="@+id/charactersButton"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
