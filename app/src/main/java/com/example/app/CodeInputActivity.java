@@ -34,4 +34,10 @@ public class CodeInputActivity extends AppCompatActivity {
             toast.show();
         }
     }
+
+    public void onBackButton(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
