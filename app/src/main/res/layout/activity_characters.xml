@@ -29,8 +29,9 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
-        android:layout_width="362dp"
-        android:layout_height="635dp"
+        android:id="@+id/listView1"
+        android:layout_width="371dp"
+        android:layout_height="518dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/backButton2"
         app:layout_constraintEnd_toEndOf="parent"
