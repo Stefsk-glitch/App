@@ -20,7 +20,7 @@ public class CodeInputActivity extends AppCompatActivity {
 
     public void onCodeInputButton(View v) {
         if(codeInput.getText().toString().equals("7385")) {
-            if(!UnlockedAnimals.unlockedAnimals.contains("pig")) {
+            if(!Info.unlockedAnimals.contains("pig")) {
                 LED_MatrixActivity.currentAnimal = "pig";
                 Intent intent = new Intent(CodeInputActivity.this, LED_MatrixActivity.class);
                 startActivity(intent);

@@ -5,6 +5,7 @@
 #include <WiFiUdp.h>
 #include <WiFiClientSecure.h>
 #include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 #include <Adafruit_GFX.h>
 #include "Adafruit_LEDBackpack.h"
 
@@ -13,24 +14,22 @@
 #endif
 
 Adafruit_LEDBackpack matrix = Adafruit_LEDBackpack();
-
-bool person = false;
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 uint8_t counter = 0;
+bool user = false;
 
 const int trigPin = 5;
 const int echoPin = 18;
 const int onboardLed = 2;
 
-String arrayQueue[100];
-int queueNumber = 0;
-int localMessageNumber = 0;
+String username;
 
 const float SOUND_SPEED = 0.034;
 
 long duration = 0;
 float distanceCm = 0;
-String localMessage = "";
+String matrixMessage = "";
 
 const char* ssid = "joost";
 const char* password = "patrick123";
@@ -45,6 +44,8 @@ PubSubClient mqttClient(wifiClient);
 
 void setup() {
   matrix.begin(0x76);  // pass in the address
+  lcd.begin();
+  lcd.backlight();
   Serial.begin(115200);
 
   // Connect to Wi-Fi
@@ -72,7 +73,8 @@ void setup() {
       delay(2000);
     }
   }
-  mqttClient.subscribe("topic/android");
+  mqttClient.subscribe("topic/matrix");
+  mqttClient.subscribe("topic/username");
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -89,250 +91,36 @@ void loop() {
     matrix.displaybuffer[i] <<= 1;
   }
 
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-
-  duration = pulseIn(echoPin, HIGH);
-
-  distanceCm = duration * SOUND_SPEED / 2;
+  checkUltrasoon();
 
   if (distanceCm < 80) {
-
-    localMessage = arrayQueue[localMessageNumber];
-
-    // Check if the incoming message is not null
-    
-
-      if (localMessage == "") {
-      digitalWrite(onboardLed, HIGH);
-
-      // paint one LED per row. The HT16K33 internal memory looks like
-      // a 8x16 bit matrix (8 rows, 16 columns)
-      for (uint8_t i=0; i<8; i++) {
-        // draw a diagonal row of pixels
-        matrix.displaybuffer[i] = _BV((counter+i) % 16) | _BV((counter+i+8) % 16);
-      }
-      // write the changes we just made to the display
-      matrix.writeDisplay();
-      delay(100);
-
-      counter++;
-      if (counter >= 16) counter = 0;
-    }
-
-    if (localMessage != "") {
-
-      String str2 = String(localMessageNumber);
-      const char* cstr2 = str2.c_str();
-
-      mqttClient.publish("topic/currentQueue", cstr2);
-
-      localMessageNumber++;
-      // Clear the matrix LEDs
-      for (uint8_t i = 0; i < 8; i++) {
-        matrix.displaybuffer[i] = 0;
-      }
-      // write the changes we just made to the display
-      matrix.writeDisplay();
-
-      digitalWrite(onboardLed, LOW);
-      delay(100);
-
-      int numFlashes = 0;
-
-      if (localMessage == "010203070809121314161824252730323340434445485052545659606164") {
-        String result = "200";
-        const char* resultcstr = result.c_str();
-        mqttClient.publish("topic/result", resultcstr);
-
-        // TODO: Flash pig head 3 times after show balloon and let the balloon fly up until balloon is gone
-        Serial.println("CORRECT CODE!");
-
-        for (int i = 0; i < 3; i++) {
-          uint8_t leds[] = {8, 16, 32, 40, 1, 2, 6, 7, 11, 12, 13, 15, 17, 23, 26, 29, 31, 39, 42, 43, 44, 47, 49, 51, 53, 55, 58, 59, 60, 63};
-          uint8_t numLEDs = 30;
-          turnOnLEDs(leds, numLEDs);
-          delay(1000);
-
-          // Clear the matrix LEDs
-          for (uint8_t i = 0; i < 8; i++) {
-            matrix.displaybuffer[i] = 0;
-          }
-          // write the changes we just made to the display
-          matrix.writeDisplay();
-          digitalWrite(onboardLed, LOW);
-          delay(200);
-        }
-
-        // balloon
-        uint8_t leds[] = {59, 60, 61};
-        uint8_t numLEDs = 3;
-        turnOnLEDs(leds, numLEDs);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds2[] = {58, 59, 60, 61, 62, 51, 52, 53};
-        uint8_t numLEDs2 = 8;
-        turnOnLEDs(leds2, numLEDs2);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds3[] = {63, 62, 61, 60, 59, 51, 52, 53, 54, 55, 46, 45, 44};
-        uint8_t numLEDs3 = 13;
-        turnOnLEDs(leds3, numLEDs3);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds4[] = {63, 62, 61, 60, 59, 51, 52, 53, 54, 55, 47, 46, 45, 44, 43, 36, 37, 38};
-        uint8_t numLEDs4 = 18;
-        turnOnLEDs(leds4, numLEDs4);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds5[] = {61, 60, 59, 50, 51, 52, 53, 54, 42, 43, 44, 45, 46, 34, 35, 36, 37, 38, 27, 28, 29};
-        uint8_t numLEDs5 = 21;
-        turnOnLEDs(leds5, numLEDs5);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds6[] = {59, 60, 61, 51, 52, 53, 42, 43, 44, 45, 46, 34, 35, 36, 37, 38, 26, 27, 28, 29, 30, 19, 20, 21};
-        uint8_t numLEDs6 = 24;
-        turnOnLEDs(leds6, numLEDs6);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds7[] = {61, 52, 53, 54, 44, 45, 46, 35, 36, 37, 38, 39, 27, 28, 29, 30, 31, 19, 20, 21, 22, 23, 12, 13, 14};
-        uint8_t numLEDs7 = 25;
-        turnOnLEDs(leds7, numLEDs7);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
-
-        uint8_t leds8[] = {62, 61, 55, 52, 44, 43, 45, 36, 35, 37, 27, 26, 28, 29, 30, 18, 19, 20, 21, 22, 10, 11, 12, 13, 14, 3, 4, 5};
-        uint8_t numLEDs8 = 28;
-        turnOnLEDs(leds8, numLEDs8);
-        delay(200);
-
-        // Clear the matrix LEDs
-        for (uint8_t i = 0; i < 8; i++) {
-          matrix.displaybuffer[i] = 0;
-        }
-        // write the changes we just made to the display
-        matrix.writeDisplay();
-        digitalWrite(onboardLed, LOW);
-        delay(200);
+    person();
+    if (matrixMessage != "") {
+      clearMatrix();
+      if (matrixMessage == "010203070809121314161824252730323340434445485052545659606164") {
+        correctInput();
+        lcd.clear();
       }
       else {
         // make whole led matrix RED and after clear
-        Serial.println("WRONG CODE!");
-        String result = "403";
-        const char* resultcstr = result.c_str();
-        mqttClient.publish("topic/result", resultcstr);
-
-        // Flash the matrix three times
-        while (numFlashes < 3) {
-          // Turn off the matrix LEDs
-          for (uint8_t i = 0; i < 8; i++) {
-            matrix.displaybuffer[i] = 0;
-          }
-          // write the changes we just made to the display
-          matrix.writeDisplay();
-          delay(500);
-
-          // Fill the matrix
-          for (uint8_t i = 0; i < 8; i++) {
-            matrix.displaybuffer[i] = 0xFF;
-          }
-          // write the changes we just made to the display
-          matrix.writeDisplay();
-          delay(500);
-
-          numFlashes++;
-        }
+        wrongInput();
+        lcd.clear();
       }
-
-      localMessage = "";
+      matrixMessage = "";
     }
   }
   else {
-    // Clear the matrix LEDs
-    for (uint8_t i = 0; i < 8; i++) {
-      matrix.displaybuffer[i] = 0;
-    }
-    // write the changes we just made to the display
-    matrix.writeDisplay();
-
-    digitalWrite(onboardLed, LOW);
-    delay(100);
+    lcd.clear();
+    clearMatrix();
   }
-
   Serial.print("Distance (cm): ");
   Serial.println(distanceCm);
 }
 
-
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle incoming message from mqtt hivemq
   String message = "";
+  String TopicString = String(topic);
 
   for (int i = 0; i < length; i++) {
     message += (char)payload[i];
@@ -341,13 +129,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
   //localMessage = message;
   Serial.println("Message received on topic " + String(topic) + ": " + message);
 
-  arrayQueue[queueNumber] = message;
-
-  String str = String(queueNumber);
-  const char* cstr = str.c_str();
-
-  mqttClient.publish("topic/queue", cstr);
-  queueNumber++;
+  if (TopicString == "topic/username") {
+    Serial.println("username");
+    username = message;
+    user = true;
+  } else {
+    matrixMessage = message;
+  }
 }
 
 void turnOnLED(uint8_t ledNumber) {
@@ -388,4 +176,175 @@ void turnOnLEDs(uint8_t ledNumbers[], uint8_t numLEDs) {
 
   // Write the changes to the display
   matrix.writeDisplay();
+}
+
+void checkUltrasoon() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+
+  distanceCm = duration * SOUND_SPEED / 2;
+}
+
+void person() {
+  if(!user) {
+    showCode();
+  } else {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Welkom");
+    lcd.setCursor(0, 1);
+    lcd.print(username);
+  }
+  digitalWrite(onboardLed, HIGH);
+
+  // paint one LED per row. The HT16K33 internal memory looks like
+  // a 8x16 bit matrix (8 rows, 16 columns)
+  for (uint8_t i = 0; i < 8; i++) {
+    // draw a diagonal row of pixels
+    matrix.displaybuffer[i] = _BV((counter + i) % 16) | _BV((counter + i + 8) % 16);
+  }
+  // write the changes we just made to the display
+  matrix.writeDisplay();
+  delay(100);
+
+  counter++;
+  if (counter >= 16) counter = 0;
+}
+
+void showCode() {
+  lcd.setCursor(0, 0);
+  lcd.print("De code is:");
+  lcd.setCursor(0, 1);
+  lcd.print("7385");
+}
+
+void clearMatrix() {
+  for (uint8_t i = 0; i < 8; i++) {
+    matrix.displaybuffer[i] = 0;
+  }
+  // write the changes we just made to the display
+  matrix.writeDisplay();
+  digitalWrite(onboardLed, LOW);
+}
+
+void wrongInput() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Helaas, probeer");
+  lcd.setCursor(0, 1);
+  lcd.print("het opnieuw :(");
+  Serial.println("WRONG CODE!");
+  String result = "403";
+  const char* resultcstr = result.c_str();
+  mqttClient.publish("topic/result", resultcstr);
+
+  int numFlashes = 0;
+  // Flash the matrix three times
+  while (numFlashes < 3) {
+    // Turn off the matrix LEDs
+    for (uint8_t i = 0; i < 8; i++) {
+      matrix.displaybuffer[i] = 0;
+    }
+    // write the changes we just made to the display
+    matrix.writeDisplay();
+    delay(500);
+
+    // Fill the matrix
+    for (uint8_t i = 0; i < 8; i++) {
+      matrix.displaybuffer[i] = 0xFF;
+    }
+    // write the changes we just made to the display
+    matrix.writeDisplay();
+    delay(500);
+
+    numFlashes++;
+  }
+}
+
+void correctInput() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Het is goed!");
+  lcd.setCursor(0, 1);
+  lcd.print("Goed gedaan! :)");
+  String result = "200";
+  const char* resultcstr = result.c_str();
+  mqttClient.publish("topic/result", resultcstr);
+
+  Serial.println("CORRECT CODE!");
+
+  for (int i = 0; i < 3; i++) {
+    uint8_t leds[] = {8, 16, 32, 40, 1, 2, 6, 7, 11, 12, 13, 15, 17, 23, 26, 29, 31, 39, 42, 43, 44, 47, 49, 51, 53, 55, 58, 59, 60, 63};
+    uint8_t numLEDs = 30;
+    turnOnLEDs(leds, numLEDs);
+    delay(1000);
+    clearMatrix();
+    delay(200);
+  }
+  balloon();
+  user = false;
+}
+
+void balloon() {
+  uint8_t leds[] = {59, 60, 61};
+  uint8_t numLEDs = 3;
+  turnOnLEDs(leds, numLEDs);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds2[] = {58, 59, 60, 61, 62, 51, 52, 53};
+  uint8_t numLEDs2 = 8;
+  turnOnLEDs(leds2, numLEDs2);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds3[] = {63, 62, 61, 60, 59, 51, 52, 53, 54, 55, 46, 45, 44};
+  uint8_t numLEDs3 = 13;
+  turnOnLEDs(leds3, numLEDs3);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds4[] = {63, 62, 61, 60, 59, 51, 52, 53, 54, 55, 47, 46, 45, 44, 43, 36, 37, 38};
+  uint8_t numLEDs4 = 18;
+  turnOnLEDs(leds4, numLEDs4);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds5[] = {61, 60, 59, 50, 51, 52, 53, 54, 42, 43, 44, 45, 46, 34, 35, 36, 37, 38, 27, 28, 29};
+  uint8_t numLEDs5 = 21;
+  turnOnLEDs(leds5, numLEDs5);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds6[] = {59, 60, 61, 51, 52, 53, 42, 43, 44, 45, 46, 34, 35, 36, 37, 38, 26, 27, 28, 29, 30, 19, 20, 21};
+  uint8_t numLEDs6 = 24;
+  turnOnLEDs(leds6, numLEDs6);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds7[] = {61, 52, 53, 54, 44, 45, 46, 35, 36, 37, 38, 39, 27, 28, 29, 30, 31, 19, 20, 21, 22, 23, 12, 13, 14};
+  uint8_t numLEDs7 = 25;
+  turnOnLEDs(leds7, numLEDs7);
+  delay(200);
+  clearMatrix();
+  delay(200);
+
+  uint8_t leds8[] = {62, 61, 55, 52, 44, 43, 45, 36, 35, 37, 27, 26, 28, 29, 30, 18, 19, 20, 21, 22, 10, 11, 12, 13, 14, 3, 4, 5};
+  uint8_t numLEDs8 = 28;
+  turnOnLEDs(leds8, numLEDs8);
+  delay(200);
+  clearMatrix();
+  delay(200);
 }
