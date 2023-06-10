@@ -20,9 +20,15 @@ public class CodeInputActivity extends AppCompatActivity {
 
     public void onCodeInputButton(View v) {
         if(codeInput.getText().toString().equals("7385")) {
-            Intent intent = new Intent(CodeInputActivity.this, LED_MatrixActivity.class);
-            startActivity(intent);
-            finish();
+            if(!UnlockedAnimals.unlockedAnimals.contains("pig")) {
+                LED_MatrixActivity.currentAnimal = "pig";
+                Intent intent = new Intent(CodeInputActivity.this, LED_MatrixActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast toast = Toast.makeText(this, "Je hebt dit dier al ontgrendeld!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         } else {
             Toast toast = Toast.makeText(this, "De code is fout!", Toast.LENGTH_SHORT);
             toast.show();
