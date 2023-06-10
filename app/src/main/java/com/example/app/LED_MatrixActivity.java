@@ -108,16 +108,15 @@ public class LED_MatrixActivity extends AppCompatActivity {
                         if (currentAnimal.equals("pig")) {
                             UnlockedAnimals.unlockedAnimals.add("pig");
                         }
-                        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Je hebt het goed!", Toast.LENGTH_SHORT);
-                        toast.show();
-                        Intent intent = new Intent(LED_MatrixActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                        Log.d("result", "good");
+//                        Log.d("result", "good");
+                        runOnUiThread(() -> {
+                            goodInput();
+                        });
                     } else {
-                        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Helaas, het is fout :(", Toast.LENGTH_SHORT);
-                        toast.show();
-                        Log.d("result", "wrong");
+//                        Log.d("result", "wrong");
+                        runOnUiThread(() -> {
+                            wrongInput();
+                        });
                     }
                 }
             }
@@ -175,5 +174,18 @@ public class LED_MatrixActivity extends AppCompatActivity {
             toast.show();
         }
         mqtt.disconnect();
+    }
+
+    private void goodInput() {
+        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Je hebt het goed!", Toast.LENGTH_SHORT);
+        toast.show();
+        Intent intent = new Intent(LED_MatrixActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void wrongInput() {
+        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Helaas, het is fout :(", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
