@@ -81,8 +81,9 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
         try {
             client.connect(mqttConnectOptions);
-        } catch (MqttException e) {
-            throw new RuntimeException(e);
+            client.subscribe("topic/result");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         client.setCallback(new MqttCallback() {
@@ -93,9 +94,16 @@ public class LED_MatrixActivity extends AppCompatActivity {
             }
 
             @Override
+            // Called when a message arrives from MQTT
             public void messageArrived(String topic, MqttMessage message) {
-                if (!topic.equals("topic/queue")) {
-                    Log.d("SUB", message.toString());
+                Log.d("mqtt", "message arrived: " + message.getPayload());
+                if (topic.equals("topic/result")) {
+                    if (message.toString().equals("200")) {
+                        Log.d("result", "good");
+                    } else {
+                        Log.d("result", "wrong");
+                        //fout
+                    }
                 }
             }
 
@@ -152,10 +160,5 @@ public class LED_MatrixActivity extends AppCompatActivity {
             toast.show();
         }
         mqtt.disconnect();
-    }
-
-    private void sub(String topic) throws MqttException {
-        this.client.subscribe(topic, 1);
-        Log.d("SUB", "Subbed to topic: " + topic);
     }
 }
