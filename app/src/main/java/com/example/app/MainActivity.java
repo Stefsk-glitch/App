@@ -2,6 +2,7 @@ package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onWriteButton(View v) {
-        Intent intent = new Intent(this, LED_MatrixActivity.class);
+        Intent intent = new Intent(this, CodeInputActivity.class);
         startActivity(intent);
     }
 
