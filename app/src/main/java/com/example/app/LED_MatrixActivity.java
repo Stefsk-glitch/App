@@ -31,6 +31,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
     private MessageBuilder messageBuilder = new MessageBuilder();
     private Mqtt mqtt = new Mqtt();
     private MqttClient client;
+    public static String currentAnimal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +82,14 @@ public class LED_MatrixActivity extends AppCompatActivity {
 
         try {
             client.connect(mqttConnectOptions);
-        } catch (MqttException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            client.subscribe("topic/result");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         client.setCallback(new MqttCallback() {
@@ -93,9 +100,24 @@ public class LED_MatrixActivity extends AppCompatActivity {
             }
 
             @Override
+            // Called when a message arrives from MQTT
             public void messageArrived(String topic, MqttMessage message) {
-                if (!topic.equals("topic/queue")) {
-                    Log.d("SUB", message.toString());
+//                Log.d("mqtt", "message arrived: " + message.getPayload());
+                if (topic.equals("topic/result")) {
+                    if (message.toString().equals("200")) {
+                        if (currentAnimal.equals("pig")) {
+                            UnlockedAnimals.unlockedAnimals.add("pig");
+                        }
+//                        Log.d("result", "good");
+                        runOnUiThread(() -> {
+                            goodInput();
+                        });
+                    } else {
+//                        Log.d("result", "wrong");
+                        runOnUiThread(() -> {
+                            wrongInput();
+                        });
+                    }
                 }
             }
 
@@ -110,7 +132,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
     private void onButtonClick(Button button) {
         String buttonText = button.getText().toString();
         messageBuilder.add(buttonText);
-        Log.d("BUTTON", buttonText);
+//        Log.d("BUTTON", buttonText);
         messageBuilder.printMessage();
 
         int defaultGrayColor = getResources().getColor(android.R.color.darker_gray);
@@ -141,8 +163,8 @@ public class LED_MatrixActivity extends AppCompatActivity {
             mqtt.connect();
             try {
                 mqtt.sendMessage(messageBuilder.getMessage());
-                Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
-                toast.show();
+//                Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
+//                toast.show();
             } catch (Exception e) {
                 Toast toast = Toast.makeText(this, "Probeer het opnieuw!", Toast.LENGTH_SHORT);
                 toast.show();
@@ -154,8 +176,16 @@ public class LED_MatrixActivity extends AppCompatActivity {
         mqtt.disconnect();
     }
 
-    private void sub(String topic) throws MqttException {
-        this.client.subscribe(topic, 1);
-        Log.d("SUB", "Subbed to topic: " + topic);
+    private void goodInput() {
+        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Je hebt het goed!", Toast.LENGTH_SHORT);
+        toast.show();
+        Intent intent = new Intent(LED_MatrixActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void wrongInput() {
+        Toast toast = Toast.makeText(LED_MatrixActivity.this, "Helaas, het is fout :(", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

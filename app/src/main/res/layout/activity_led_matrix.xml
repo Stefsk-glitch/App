@@ -20,6 +20,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cherrybomb"
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Teken het plaatje dat op het beeld staat"
@@ -38,15 +39,15 @@
         android:id="@+id/sendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Versturen"
-        />
+        android:fontFamily="@font/cherrybomb"
+        android:text="Versturen" />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Terug"
-        />
+        android:fontFamily="@font/cherrybomb"
+        android:text="Terug" />
 
     <LinearLayout
         android:id="@+id/bottom_layout"

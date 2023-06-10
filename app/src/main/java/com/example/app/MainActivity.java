@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onWriteButton(View v) {
-        Intent intent = new Intent(this, LED_MatrixActivity.class);
+        Intent intent = new Intent(this, CodeInputActivity.class);
         startActivity(intent);
     }
 
