@@ -15,7 +15,6 @@ import java.util.Arrays;
 import javax.net.ssl.SSLSocketFactory;
 
 public class Mqtt {
-    private final String topic = "topic/android";
     private final String pass = "Stronk!PasswordSuperAdmin1";
     private final String user = "AndroidPhone";
 
@@ -51,7 +50,7 @@ public class Mqtt {
         }
     }
 
-    public void sendMessage(String message) throws MqttException {
+    public void sendMessage(String message, String topic) throws MqttException {
         client.publish(
                 topic,
                 message.getBytes(UTF_8),

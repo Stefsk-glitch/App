@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -92,6 +91,14 @@ public class LED_MatrixActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        try {
+            mqtt.connect();
+            mqtt.sendMessage(Info.username, "topic/username");
+            mqtt.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         client.setCallback(new MqttCallback() {
             @Override
             // Called when the client lost the connection to the broker
@@ -106,7 +113,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
                 if (topic.equals("topic/result")) {
                     if (message.toString().equals("200")) {
                         if (currentAnimal.equals("pig")) {
-                            UnlockedAnimals.unlockedAnimals.add("pig");
+                            Info.unlockedAnimals.add("pig");
                         }
 //                        Log.d("result", "good");
                         runOnUiThread(() -> {
@@ -162,7 +169,7 @@ public class LED_MatrixActivity extends AppCompatActivity {
         try {
             mqtt.connect();
             try {
-                mqtt.sendMessage(messageBuilder.getMessage());
+                mqtt.sendMessage(messageBuilder.getMessage(), "topic/matrix");
 //                Toast toast = Toast.makeText(this, "Opdracht verstuurd!", Toast.LENGTH_SHORT);
 //                toast.show();
             } catch (Exception e) {

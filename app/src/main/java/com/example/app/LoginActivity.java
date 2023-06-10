@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Vergeet je naam niet in te vullen!", Toast.LENGTH_LONG);
             toast.show();
         } else {
+            Info.username = String.valueOf(textNameInput.getText());
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
