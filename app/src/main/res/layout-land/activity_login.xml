@@ -61,6 +61,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="56dp"
         android:hint="Voer hier je naam in"
+        android:lines="1"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.767"
         app:layout_constraintStart_toStartOf="parent"
