@@ -36,52 +36,51 @@ public class CharactersActivity extends AppCompatActivity {
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 switch (selectedItem) {
                     case "Waggel het Avontuurlijke Varken":
-                        setContentView(R.layout.activity_waggels_story);
-
-                        if (Info.unlockedAnimals.contains("pig")){
+                        if (Info.unlockedAnimals.contains("pig")) {
+                            setContentView(R.layout.activity_waggels_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                     case "Barry de Brutale Brul-Aap":
-                        if (Info.unlockedAnimals.contains("monkey")){
+                        if (Info.unlockedAnimals.contains("monkey")) {
                             setContentView(R.layout.activity_barrys_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                     case "Harry de Haastende Haas":
-                        if (Info.unlockedAnimals.contains("rabbit")){
+                        if (Info.unlockedAnimals.contains("rabbit")) {
                             setContentView(R.layout.activity_harrys_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                     case "Nellie de Nederige Nijlpaard":
-                        if (Info.unlockedAnimals.contains("hippo")){
+                        if (Info.unlockedAnimals.contains("hippo")) {
                             setContentView(R.layout.activity_nellies_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                     case "Victor de Vlugge Vos":
-                        if (Info.unlockedAnimals.contains("fox")){
+                        if (Info.unlockedAnimals.contains("fox")) {
                             setContentView(R.layout.activity_victors_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                     case "Kevin de Klummelige Kat":
-                        if (Info.unlockedAnimals.contains("cat")){
+                        if (Info.unlockedAnimals.contains("cat")) {
                             setContentView(R.layout.activity_kevins_story);
                         } else {
-//                            Toast toast = Toast.makeText(this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
-//                            toast.show();
+                            Toast toast = Toast.makeText(CharactersActivity.this, "Je hebt deze vriend nog niet ontmoet!", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                         break;
                 }
