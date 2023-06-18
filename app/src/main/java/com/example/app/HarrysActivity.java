@@ -28,8 +28,4 @@ public class HarrysActivity extends AppCompatActivity {
         textView.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }

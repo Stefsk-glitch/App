@@ -28,8 +28,5 @@ public class VictorsAvtivity extends AppCompatActivity {
         textView.setMovementMethod(new ScrollingMovementMethod());
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 }

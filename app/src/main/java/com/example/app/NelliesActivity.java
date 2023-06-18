@@ -1,5 +1,6 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
@@ -27,9 +28,5 @@ public class NelliesActivity extends AppCompatActivity {
         
         textView.setMovementMethod(new ScrollingMovementMethod());
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+    
 }
