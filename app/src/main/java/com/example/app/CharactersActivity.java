@@ -88,8 +88,12 @@ public class CharactersActivity extends AppCompatActivity {
 
     }
 
-    public void onBackButton(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+    backbutton = findViewById(R.id.backbutton);
+    backbutton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(CharactersActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    });
 }
