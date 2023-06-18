@@ -86,10 +86,5 @@ public class CharactersActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void PleaseWorkButton(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
+    
 }
