@@ -86,6 +86,15 @@ public class CharactersActivity extends AppCompatActivity {
             }
         });
 
+        Button backButton = findViewById(R.id.backButton2);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle button click event here
+                onBackButton();
+            }
+        });
+
     }
     
     public void onBackButton(View view) {
