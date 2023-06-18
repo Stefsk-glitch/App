@@ -3,15 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView12"
+        android:layout_width="143dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/cherrybomb"
         android:text="Harry"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cherrybomb"
+        android:text="de Haastende Haas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="377dp"
+        android:layout_height="501dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/cherrybomb"
+        android:scrollbars="vertical"
+        android:text="Op een zonnige ochtend in het wonderlijke woud liep Waggel rustig tussen de bloemen en struiken door. Plotseling hoorde hij een snelle beweging achter zich. Hij draaide zich om en zag Harry, een haas met een vliegensvlugge blik in zijn ogen. Harry sprintte voorbij Waggel, zijn lange oren wapperden in de wind. Verbaasd riep Waggel, Wacht even, Harry! Waarom ren je zo snel? Zonder te stoppen, keek Harry achterom en riep hij buiten adem: Ik heb zo veel te doen, Waggel! Er is nooit genoeg tijd in een dag om alles te bereiken. Ik moet rennen, springen en mijn taken afhandelen! Waggel kon de opwinding in Harry's stem horen en besloot hem te helpen zijn haastige levensstijl te begrijpen. Maar Harry, soms is het belangrijk om de schoonheid om ons heen te waarderen en de tijd te nemen om te genieten van wat het leven te bieden heeft. Laten we samen even stilstaan en de bloemen ruiken. Harry vertraagde zijn tempo en keek nieuwsgierig naar Waggel. Hij stopte en boog zich naar een bloem, inhaleerde diep en glimlachte. Je hebt gelijk, Waggel. Ik ben altijd zo gefocust geweest op mijn doelen dat ik vergat te genieten van de kleine dingen. Bedankt voor deze les. Vanaf die dag rende Harry niet meer als een gek door het woud. In plaats daarvan nam hij de tijd om de prachtige omgeving te bewonderen en af en toe een praatje te maken met andere dieren. Hij leerde dat het leven niet alleen gaat om rennen en vliegen, maar ook om rusten en genieten van de eenvoudige momenten."
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onBackButton"
+        android:text="terug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

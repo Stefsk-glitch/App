@@ -1,22 +1,19 @@
 package com.example.app;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class WaggelActivity extends AppCompatActivity {
+public class HarrysActivity extends AppCompatActivity {
 
     TextView textView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_waggels_story);
+        setContentView(R.layout.activity_harrys_story);
         textView = findViewById(R.id.textView19);
 
         String lore = "Hello wolrld!";

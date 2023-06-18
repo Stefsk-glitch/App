@@ -3,15 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView22"
+        android:layout_width="160dp"
+        android:layout_height="61dp"
+        android:fontFamily="@font/cherrybomb"
         android:text="Victor"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/cherrybomb"
+        android:text="de vlugge vos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="371dp"
+        android:layout_height="518dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/cherrybomb"
+        android:scrollbars="vertical"
+        android:text="Op een zonnige ochtend terwijl Waggel door het wonderlijke woud liep, zag hij een snelle beweging tussen de bomen. Hij keek nieuwsgierig om zich heen en zag een vos die met ongekende snelheid door het gebladerte gleed. Verbaasd riep Waggel: Hé daar, wie ben jij en waarom ren je zo snel? De vos vertraagde abrupt en keek met een geamuseerde blik naar Waggel. Ik ben Victor, de vlugge vos. Ik ren snel omdat ik hou van snelheid en avontuur. Het maakt me vrij en geeft me een gevoel van opwinding. Waggel keek vol bewondering naar Victor en vroeg: Dat klinkt geweldig! Zou je me willen leren hoe ik snel kan rennen? Victor grijnsde en antwoordde: Natuurlijk, Waggel. Snelheid is niet alleen iets voor vossen, het kan door iedereen worden bereikt. Het draait allemaal om het vinden van je innerlijke kracht en het geloven in jezelf. Waggel keek vastberaden en zei: Ik wil het proberen! Leer me alsjeblieft hoe ik snel kan rennen, Victor. En zo begon Victor de vlugge vos Waggel te trainen in de kunst van het rennen. Hij leerde Waggel de juiste technieken, de beste manier om zijn poten te gebruiken en hoe hij zijn ademhaling kon beheersen tijdens het rennen. Na een paar dagen van intensieve training, kon Waggel zijn snelheid aanzienlijk verbeteren. Hij rende met Victor door het woud, genietend van de wind die door zijn haren waaide en het gevoel van vrijheid dat hij nog nooit eerder had ervaren. Uiteindelijk stopten ze om uit te rusten en Waggel hijgde van opwinding. Dank je wel, Victor! Ik voel me krachtig en snel. Dit is een geweldig avontuur! Victor lachte en klopte Waggel op zijn rug. Graag gedaan, Waggel. Ik wist dat je het kon! Blijf oefenen en geloven in jezelf, en er zullen nog veel meer avonturen op je wachten. Waggel bedankte Victor voor zijn waardevolle lessen en beloofde om zijn nieuwe vaardigheden te gebruiken om anderen te inspireren. Samen zetten ze hun avontuur voort, met Waggel als een snel en vastberaden varken en Victor als zijn wijze en ervaren gids."
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onBackButton"
+        android:text="terug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

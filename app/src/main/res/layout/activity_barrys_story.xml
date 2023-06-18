@@ -3,15 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView43"
+        android:layout_width="140dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/cherrybomb"
         android:text="Barry"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cherrybomb"
+        android:text="de Brutale Brulaap"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="377dp"
+        android:layout_height="501dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/cherrybomb"
+        android:scrollbars="vertical"
+        android:text="Begin niet over tovenaren en hou het verhaal logisch: Op een dag liep waggel door een stuk van het woud waar de bomen hoog in de lucht rijkte. Het woud leek hier het meest levendig met het geluid van honderden vogels en andere dieren om zich heen. Apen zwaaiden van boom naar boom met behulp van lianen en hagedissen achtervolgden elkaar over alle kanten van de bomen. Waggel bewonderde het prachtige geheel met open mond toen hij opeens een raar geluid hoorde. Een het leek wel alsof er een brul boven alle geluiden uit begon te komen. Het werd steeds luider en luider totdat, toen het op zijn luidst was een aap zijn rugtas pakte en ermee op een tak landde. Geschrokken riep waggel hé, dat is mijn tas geef hem terug hierop antwoordde de aap pak me dan waarna hij met een liaan weg zwaaide. Waggel wachtte geen moment en zette de achtervolging in. Met moeite hield hij de aap bij, maar de aap leek niet van ophouden te weten al lachend en brullend zwaaide hij van boom naar boom. Totdat terwijl hij tijdens het zwaaien achterom keek en riep pak me dan, als je me pakken kan waarna hij op een boom botste en naar beneden viel. Waggel rende er meteen naartoe en vroeg bezorgd alles ok? Waarom stal je m’n tas en wie ben jij eigenlijk?!  De aap keek hierdoor verdwaast op en antwoorde auw, ik ben barry en ik ben barry. Wat? vroeg waggel zou ik m'n tas terug mogen?. je hebt me gepakt toch? Barry wreef over zijn pijnlijke hoofd terwijl hij naar Waggel keek. Hij krabbelde overeind en wreef zijn ogen uit, nog steeds een beetje in de war. Sorry, maat, zei Barry met een verontschuldigende blik op zijn gezicht. Ik wilde eigenlijk gewoon een beetje lol maken, maar ik had niet verwacht dat ik zo hard zou botsen. Je tas is daar ergens, ik zal hem voor je halen. Waggel voelde een mengeling van opluchting en sympathie voor de onhandige aap. Terwijl Barry zijn weg omhoog zocht naar de plek waar hij was gevallen, beantwoordde Waggel zijn vraag. Ik ben Waggel, en ik was gewoon aan het genieten van het prachtige woud toen ik je hoorde. Waarom besloot je mijn tas te stelen? Dacht je dat het grappig zou zijn? Barry keek beschaamd naar de grond terwijl hij zijn schouders ophaalde. Nou, ik ben een speelse aap, en ik dacht dat het leuk zou zijn om je een beetje uit te dagen. Het spijt me echt dat ik je van streek heb gemaakt. Hier is je tas. Hij wees naar een tak waar Waggels tas vastzat tussen een paar bladeren. Waggel bedankte Barry en pakte zijn tas. Hij keek de aap aan en zei: Goed, Barry, laten we deze situatie achter ons laten. Ik begrijp dat je gewoon plezier wilde hebben. Laten we in plaats daarvan vrienden zijn en samen genieten van dit prachtige woud. Wat denk je ervan? Barry keek opgelucht en knikte enthousiast. Ja, dat klinkt geweldig! Ik kan je rondleiden door de beste plekjes van het woud. Ik weet waar je de mooiste bloemen kunt vinden en de beste boomhutten kunt bouwen. We gaan een geweldige tijd hebben! En zo begonnen Waggel en Barry aan een avontuurlijke vriendschap, waarbij ze samen door het levendige woud trokken, genoten van de schoonheid van de natuur en elkaars gezelschap. Ze zouden nog vele avonturen beleven, maar geen van hen zou ooit nog iets stelen van de ander."
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView41"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onBackButton"
+        android:text="terug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

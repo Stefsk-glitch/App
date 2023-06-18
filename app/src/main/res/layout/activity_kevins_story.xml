@@ -3,15 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/cherrybomb"
         android:text="Kevin"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cherrybomb"
+        android:text="de klumelige kat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="377dp"
+        android:layout_height="501dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/cherrybomb"
+        android:scrollbars="vertical"
+        android:text="Op een rustige middag in het wonderlijke woud kwam Waggel een kat tegen die een beetje onhandig leek. De kat struikelde over zijn eigen poten terwijl hij probeerde een vogel na te jagen. Waggel liep naar hem toe en vroeg bezorgd: Gaat het wel goed daar, kleine vriend? De kat keek geschrokken op en wankelde een beetje voordat hij antwoordde: Oh, hallo daar! Ik ben Kevin, de klungelige kat. Ik ben niet zo behendig als de andere dieren hier in het woud. Maar ik doe mijn best! Waggel glimlachte bemoedigend en zei: Dat maakt niet uit, Kevin. We zijn allemaal uniek en hebben onze eigen talenten. Vertel me, waarom jaag je op vogels? Kevin keek naar de lucht waar de vogel was verdwenen en zuchtte. Ik wilde gewoon vrienden maken en met ze spelen, maar ze vliegen altijd weg voordat ik de kans krijg. Ik voel me soms een beetje eenzaam. Waggel begreep Kevins verlangen naar vriendschap en bood aan: Nou, Kevin, ik ben hier om nieuwe vrienden te maken en het wonderlijke woud te verkennen. Waarom ga je met me mee? Kevins ogen lichtten op en hij miauwde enthousiast: Echt waar? Ik zou graag met je meegaan, Waggel! Misschien kan ik mijn onhandigheid overwinnen en nieuwe vrienden vinden. Samen begonnen Waggel en Kevin aan hun avontuur door het woud. Terwijl ze door de bomen liepen, maakte Kevin af en toe nog steeds onhandige sprongen en struikelde hij over boomwortels. Maar Waggel moedigde hem altijd aan en hielp hem weer op zijn pootjes. Tijdens hun reis ontmoetten ze andere dieren in het woud, die allemaal begripvol en vriendelijk waren. Kevin voelde zich op zijn gemak bij hen en realiseerde zich dat zijn onhandigheid er niet toe deed. Het ging erom wie hij was van binnen. Na verloop van tijd begon Kevin zijn onhandigheid te omarmen en maakte hij er zelfs grapjes over. Zijn klunzige acties zorgden voor lachende dieren om hem heen, en ze werden goede vrienden. Op een dag, terwijl ze speelden en lachten, merkte Waggel op: Kevin, je bent misschien klungelig, maar je bent ook lief en grappig. Je hebt ons allemaal laten zien dat het niet uitmaakt hoe onhandig je bent, zolang je jezelf maar accepteert. Kevin keek Waggel dankbaar aan en zei: Dank je, Waggel. Ik heb geleerd dat het oké is om mezelf te zijn, zelfs als ik een beetje klungelig ben. Jij hebt me geholpen mijn eigenwaarde te vinden. Met een hernieuwd gevoel van vertrouwen en vriendschap gingen Waggel en Kevin verder op hun avontuur in het wonderlijke woud. Kevin struikelde nog steeds af en toe, maar hij deed het met een glimlach op zijn gezicht en het besef dat hij een geweldige vriend was geworden, klunzigheid en al."
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onBackButton"
+        android:text="terug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

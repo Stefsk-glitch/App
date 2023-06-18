@@ -2,26 +2,25 @@ package com.example.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class CharactersActivity extends AppCompatActivity {
 
-    boolean unlocked = true;
-
+    private Button backbutton;
     @Override
-    protected void onCreate(Bundle savedInstance) {
-        super.onCreate(savedInstance);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_characters);
         ListView listView = findViewById(R.id.listView1);
 
@@ -88,10 +87,9 @@ public class CharactersActivity extends AppCompatActivity {
         });
     }
 
-    public void onBackbutton(View v) {
+    public void PleaseWorkButton(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 
 }

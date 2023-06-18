@@ -3,15 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundproftaak">
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="45dp"
-        android:layout_height="13dp"
+        android:id="@+id/textView31"
+        android:layout_width="131dp"
+        android:layout_height="72dp"
+        android:fontFamily="@font/cherrybomb"
         android:text="Nellie"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cherrybomb"
+        android:text="de Nederige Nijlpaard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="377dp"
+        android:layout_height="501dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/cherrybomb"
+        android:scrollbars="vertical"
+        android:text="Op een warme middag in het wonderlijke woud kwam Waggel bij een prachtig meer. Het water was helder en glinsterde in het zonlicht. Terwijl hij dichterbij kwam, zag hij iets dat in het water lag. Het was een nijlpaard dat genoot van een verfrissende duik. Waggel was gefascineerd door het majestueuze wezen en riep vriendelijk: Hallo daar! Ik ben Waggel, een avontuurlijk varken. Wat brengt jou naar dit mooie meer? Het nijlpaard keek op en glimlachte vriendelijk naar Waggel. Hoi Waggel, ik ben Nellie. Ik kom hier vaak om te ontspannen en af te koelen. Het woud kan soms warm zijn, weet je. Waggel knikte begrijpend en zei: Dat kan ik me voorstellen. Het is een warme dag vandaag. Mag ik me bij je voegen en wat verkoeling zoeken in het meer? Nellie knikte instemmend en zei: Natuurlijk, Waggel. Voel je vrij om mee te doen. Het water is heerlijk en verfrissend. Waggel waggelde het water in en genoot van het koele gevoel op zijn huid. Samen zwommen ze rustig rond, terwijl ze de schoonheid van het meer bewonderden. Na een tijdje vroeg Waggel nieuwsgierig: Nellie, ik ben op reis door het wonderlijke woud en ik ontmoet allerlei interessante wezens. Wat maakt jou speciaal? Nellie glimlachte nederig en antwoordde: Wel, Waggel, ik ben misschien niet zo snel als Barry de brutale brul-aap of zo haastig als Harry de haastende haas, maar ik ben sterk en beschermend. Ik zorg voor de andere dieren hier in het woud en zorg ervoor dat ze veilig zijn. Waggel keek bewonderend naar Nellie en zei: Dat is een prachtige eigenschap, Nellie. We hebben allemaal onze eigen unieke talenten en bijdragen die we kunnen leveren. Ik ben blij je te hebben ontmoet en ik zal ervoor zorgen dat de mensen die ik ontmoet ook van jou horen. Nellie glimlachte dankbaar en zei: Dank je, Waggel. Ik waardeer je vriendelijkheid. Het wonderlijke woud heeft zoveel te bieden en ik ben blij dat je het ontdekt en met anderen deelt. Samen zwommen ze nog een tijdje in het meer, genietend van elkaars gezelschap en de rustige sfeer. Ze wisten dat ze nieuwe vriendschappen hadden gesloten en dat hun avontuur in het wonderlijke woud nog maar net was begonnen."
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onBackButton"
+        android:text="terug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
