@@ -31,4 +31,8 @@ public class WaggelActivity extends AppCompatActivity {
         textView.setMovementMethod(new ScrollingMovementMethod());
     }
 
+    public void onBackButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

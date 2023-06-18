@@ -3,6 +3,7 @@ package com.example.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +26,11 @@ public class NelliesActivity extends AppCompatActivity {
         textView.setText(lore);
 
         textView.setTextColor(0);
-        
+
         textView.setMovementMethod(new ScrollingMovementMethod());
     }
-    
+    public void onBackButton(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
