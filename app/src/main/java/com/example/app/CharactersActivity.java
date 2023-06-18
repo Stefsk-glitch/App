@@ -88,7 +88,6 @@ public class CharactersActivity extends AppCompatActivity {
 
     }
 
-
     public void onBackButton(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
